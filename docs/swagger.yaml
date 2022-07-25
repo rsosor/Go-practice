@@ -1,0 +1,48 @@
+host: localhost:8080
+info:
+  contact: {}
+  description: Swagger API.
+  title: Gin Swagger Demo
+  version: "1.0"
+paths:
+  /demo/v1/CreateUser:
+    post:
+      parameters:
+      - description: 使用者姓名
+        in: formData
+        name: name
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+  /demo/v1/GetUserList:
+    get:
+      parameters:
+      - description: 使用者姓名
+        in: query
+        name: name
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+swagger: "2.0"
