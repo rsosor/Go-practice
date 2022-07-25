@@ -12,7 +12,26 @@ import (
 // @Failure 400 {string} string
 // @Failure 500 {string} string
 // @Router /demo/v1/GetUserList [get]
-// @Param name query string false "使用者姓名"
+// @Param id path int false "使用者 id"
+func GetUserById(c *gin.Context) {
+	todoList, err := service.GetUserById(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+	} else {
+		c.JSON(http.StatusOK, gin.H{
+			"code": 200,
+			"msg":  "success",
+			"data": todoList,
+		})
+	}
+}
+
+// @Success 200 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /demo/v1/GetUserList [get]
 func GetUserList(c *gin.Context) {
 	todoList, err := service.GetAllUser()
 	if err != nil {
@@ -48,6 +67,24 @@ func CreateUser(c *gin.Context) {
 			"data": user,
 		})
 	}
+}
+
+// @Success 200 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /demo/v1/GetUserList [get]
+// @Param id query int false "使用者 id"
+func UpdateUser(c *gin.Context) {
+
+}
+
+// @Success 200 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /demo/v1/GetUserList [get]
+// @Param id path int false "使用者 id"
+func DeleteUserById(c *gin.Context) {
+
 }
 
 // @Success 200 {string} string

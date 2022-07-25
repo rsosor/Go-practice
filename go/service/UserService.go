@@ -14,16 +14,16 @@ func CreateUser(user *entity.User) (err error) {
 }
 
 // read
-func GetAllUser() (userList []*entity.User, err error) {
-	if err := dao.SqlSession.Find(&userList).Error; err != nil {
+func GetUserById(id string) (user *entity.User, err error) {
+	if err = dao.SqlSession.Where("id=?", id).First(user).Error; err != nil {
 		return nil, err
 	}
 	return
 }
 
 // read
-func GetUserById(id string) (user *entity.User, err error) {
-	if err = dao.SqlSession.Where("id=?", id).First(user).Error; err != nil {
+func GetAllUser() (userList []*entity.User, err error) {
+	if err := dao.SqlSession.Find(&userList).Error; err != nil {
 		return nil, err
 	}
 	return
